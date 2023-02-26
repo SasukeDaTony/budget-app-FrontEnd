@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import EditTransaction from "./Components/EditTransaction";
+import Home from "./Components/Home";
+import Nav from "./Components/Nav";
+import NewTransaction from "./Components/NewTransaction";
+import Transactions from "./Components/Transactions";
+import TransactionDetails from "./Components/TransactionDetails";
+import FourOFour from "./Components/FourOFour";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Nav />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/transaction/new" element={<NewTransaction />} />
+            <Route
+              path="/transactions/:index"
+              element={<TransactionDetails />}
+            />
+            <Route
+              path="/transactions/:index/edit"
+              element={<EditTransaction />}
+            />
+            <Route path="*" element={<FourOFour />} />
+          </Routes>
+        </main>
+      </Router>
     </div>
   );
 }
